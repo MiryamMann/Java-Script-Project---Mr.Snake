@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/login.css"> 
+
+    <body>
+    <canvas id="canvas"></canvas>
+    <div class="form-structor">
+        <div class="signup">
+            <h2 class="form-title" id="signup"><span></span>Welcome!</h2>
+            <div class="form-holder">
+                <input type="text" class="input" id="username" placeholder="Name" />
+            </div>
+            <button class="submit-btn" onclick="validateUsername()">Take me to the game</button>
+        </div>
+    </div>
+
+    <script src="../js/login.js"></script>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+       
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function Firework(x, y) {
+            this.x = x;
+            this.y = y;
+            this.particles = [];
+
+            for (let i = 0; i < 100; i++) {
+                this.particles.push(new Particle(this.x, this.y));
+            }
+        }
+
+        Firework.prototype.update = function() {
+            for (let i = this.particles.length - 1; i >= 0; i--) {
+                const particle = this.particles[i];
+                particle.update();
+
+                if (particle.alpha <= 0) {
+                    this.particles.splice(i, 1);
+                }
+            }
+        }
+
+        Firework.prototype.draw = function() {
+            this.particles.forEach(particle => particle.draw());
+        }
+
+        function Particle(x, y) {
+            this.x = x;
+            this.y = y;
+            this.speed = random(1, 10);
+            this.angle = random(0, Math.PI * 2);
+            this.vx = Math.cos(this.angle) * this.speed;
+            this.vy = Math.sin(this.angle) * this.speed;
+            this.gravity = 0.05;
+            this.alpha = 1;
+            this.decay = random(0.01, 0.03);
+        }
+
+        Particle.prototype.update = function() {
+            this.vx *= 0.98;
+            this.vy *= 0.98;
+            this.vy += this.gravity;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.alpha -= this.decay;
+        }
+
+        Particle.prototype.draw = function() {
+            ctx.save();
+            ctx.globalAlpha = this.alpha;
+            ctx.fillStyle = 'red';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        let fireworks = [];
+
+        class Snake {
+            constructor() {
+                this.x = 0;
+                this.y = canvas.height / 2;
+                this.size = 20;
+                this.tail = [{ x: this.x, y: this.y }];
+                this.length = 50;
+                this.speed = 2;
+                this.angle = 0;
+            }
+
+            update() {
+                this.angle += 0.05;
+                const x = this.tail[0].x + this.speed;
+                const y = this.tail[0].y + Math.sin(this.angle) * this.size;
+
+                this.tail.unshift({ x, y });
+                if (this.tail.length > this.length) {
+                    this.tail.pop();
+                }
+
+                if (x > canvas.width) {
+                    this.tail = [{ x: 0, y: canvas.height / 2 }];
+                    this.angle = 0;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                for (let i = 0; i < this.tail.length; i++) {
+                    const segment = this.tail[i];
+                    ctx.lineTo(segment.x, segment.y);
+                }
+                ctx.strokeStyle = 'red';
+                ctx.lineWidth = this.size;
+                ctx.stroke();
+                ctx.closePath();
+            }
+        }
+
+        const snake = new Snake();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.globalCompositeOperation = 'lighter';
+
+            if (Math.random() < 0.05) {
+                fireworks.push(new Firework(random(0, canvas.width), random(0, canvas.height)));
+            }
+
+            fireworks.forEach((firework, index) => {
+                firework.update();
+                firework.draw();
+
+                if (firework.particles.length === 0) {
+                    fireworks.splice(index, 1);
+                }
+            });
+
+            snake.update();
+            snake.draw();
+        }
+
+        animate();
+    </script>
+</body>
+</html>

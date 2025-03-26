@@ -1,0 +1,89 @@
+
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  #gameContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+  }
+  
+  h1 {
+    font-size: 2em;
+    margin: 0;
+    color: #0f0;
+    text-shadow: 0 0 10px #0f0;
+  }
+  
+  #score {
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: #0ff;
+    text-shadow: 0 0 10px #0ff;
+  }
+  
+  #bonusTimer {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ff0;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: 2px solid #ff0;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 0, 0.1);
+    animation: blink 1s linear infinite;
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+  }
+  
+  @keyframes blink {
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  table {
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  td {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #444;
+  }
+  
+  .snake {
+    background-color: #0f0;
+    box-shadow: 0 0 10px #0f0;
+  }
+  
+  .snake-head {
+    background-color: #0ff;
+    border: 2px solid #00f;
+    box-shadow: 0 0 20px #0ff;
+  }
+  
+  .food {
+    background-color: #f00;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #f00;
+  }
+  
+  .bonus {
+    background-color: #00f;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #00f;
+  }

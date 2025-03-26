@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+
+.form-structor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    border-radius: 15px;
+    height: 550px;
+    width: 350px;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-title {
+    color: #ff0000;
+    font-size: 1.7em;
+    text-align: center;
+}
+
+.form-holder {
+    border-radius: 15px;
+    background-color: #fff;
+    overflow: hidden;
+    margin-top: 50px;
+    opacity: 1;
+    visibility: visible;
+    transition: all .3s ease;
+}
+
+.input {
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 8px 15px;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    font-size: 12px;
+}
+
+.submit-btn {
+    background-color: #ff0000;
+    color: rgba(256, 256, 256, 0.7);
+    border: 0;
+    border-radius: 15px;
+    display: block;
+    margin: 15px auto;
+    padding: 15px 45px;
+    width: 100%;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 1;
+    visibility: visible;
+    transition: all .3s ease;
+}
+
+.submit-btn:hover {
+    background-color: rgba(255, 0, 0, 0.8);
+}
+
+.center {
+    position: absolute;
+    top: calc(50% - 10%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65%;
+    z-index: 5;
+    transition: all .3s ease;
+}
+
+html, body {
+    position: relative;
+    min-height: 100vh;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+ body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-structor {
+    position: relative;
+    z-index: 10;
+}
+
+.signup {
+    text-align: center;
+}
+
+.form-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-holder {
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Make sure the canvas is behind the form */
+}
