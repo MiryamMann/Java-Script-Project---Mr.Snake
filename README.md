@@ -57,7 +57,7 @@ This project is a classic Snake game implemented in JavaScript. The game feature
 ## Installation & Usage
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/snake-game.git
+   git clone https://github.com/MiryamMann/ava-Script-Project---Mr.Snake.git
    ```
 2. Open `index.html` in a browser.
 3. Enjoy the game!
